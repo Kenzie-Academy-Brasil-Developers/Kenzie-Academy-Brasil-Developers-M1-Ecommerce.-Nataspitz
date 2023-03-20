@@ -21,6 +21,7 @@ let obj = separate(data)
 
 //contagem de quantidade
 let  productCount = 0
+let valueCount = 0
 
 
 //criação vitrine
@@ -75,29 +76,28 @@ function cards(list) {
         button.classList.add("carButton")
         button.id = `button${indice.id}`
         button.innerHTML= "Adicionar ao carrinho"
-        
+
        
           //evento adicionar no carrinho
           button.addEventListener("click", function (e){
         
-                   
           //configuração
           idCar = e.target.id
           let id = idCar.substring(6)
           let product = carFilter(id)
            cardsCar(product)
-               
-        
+          
+
+           
           //deletando titulo e paragrafo 
-          document.querySelector(".hCar").style.display = "none"
-          document.querySelector(".pCar").style.display = "none"
+            document.querySelector(".cart-empty").style.display = "none"
         
           //contagens
           productCount++
           document.querySelector("#productCount").innerHTML = `${productCount}`
-            
-            let valueCount = indice.value + valueCount
-            document.querySelector("#valueCount").innerHTML = `${valueCount}`
+          
+          valueCount += indice.value
+            document.querySelector("#valueCount").innerHTML = `R$${valueCount},00`
            })
     
     }
@@ -119,9 +119,9 @@ function carFilter(id) {
 //cards carrinho
 // div > ul (global)
 const divCar = document.querySelector(".cart-empty")
-const ulCar= document.createElement("ul")
+const ulCar = document.querySelector(".cart-list")
 ulCar.classList.add("ulCar")
-divCar.appendChild(ulCar)
+
 
 function cardsCar(obj) {
 
@@ -164,6 +164,7 @@ function cardsCar(obj) {
     buttonCar.classList.add("romoveButton")
     buttonCar.innerHTML = "Remover produto"
     buttonCar.id = `car${obj.id}`
+    buttonCar.value = obj.value
     
 
     //evento de retirar do carrinho 
@@ -171,35 +172,22 @@ function cardsCar(obj) {
         //configuração
         let  carPath = event.composedPath()
         carPath[2].remove()
+        let ulChildren =ulCar.children.length
+        console.log(ulChildren)
         
-        //criação de textos de carrinho vazio
-        //div > (h5, p)
-        let divAdd = document.querySelector(".cart-empty")
+        if (ulChildren == 0) {
+            document.querySelector(".cart-empty").style.display = "flex"
+        }
+        
+      
+
         
         //contagens
         productCount--
-        document.querySelector("#productCount").innerHTML = `${productCount}`
+        document.querySelector("#valueCount").innerHTML = `${Count},00`
         
-
-            //removendo listas
-
-           
-            //criando textos
-            let hAdd = document.createElement("h5")
-            divAdd.appendChild(hAdd)
-            hAdd.innerText = "Carrinho vazio"
-            let pAdd = document.createElement("p")
-            divAdd.appendChild(pAdd)
-            pAdd.innerText = "Adicione itens"
-               
-        
-
-            
-
-
-
-   
-
+         valueCount -= obj.value
+        document.querySelector("#valueCount").innerHTML = `R$${valueCount},00`
     })
 
     return liCar
@@ -239,10 +227,10 @@ searchButton.addEventListener("click", function(){
         for(let i = 0; i < data.length; i++){
             let producName =data[i].nameItem
             
-            if (producName.includes(searchText.value)) {
+            if (producName.toLowerCase().includes(searchText.value.toLowerCase())) {
                 search.push(data[i])
             }
-        }
+        } 
         cards(search)
     })
 
