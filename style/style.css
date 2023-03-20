@@ -138,10 +138,11 @@ li > img{
 .carButton{
   border: none;
   background-color: #f5f5f500;
+  font-size: 14px;
   cursor: pointer;
   height: 17px;
-  width: 130px;
-  margin: 8px;
+  width: 150px;
+  margin: 8px 8px 8px 0px;
 } 
 .carButton:hover{
   border-bottom: 2px solid #2E245E;
@@ -208,11 +209,9 @@ li > img{
   justify-content: flex-start;
   width: 100%;
   height: 100%;
-
 }
 
 .liCar{
-  border: #08dd1a solid 1px;
   display: flex;
   justify-content: flex-start;
   width: 100%;
@@ -220,20 +219,45 @@ li > img{
   margin-bottom: 10px;
 }
 
-.liCar > img {
-  border: #4e0707 solid 1px;
-  width: 107px;
-  height: 107px;
+.imgCar{
+  background-color: white;
+  width: 50%;
+  height: 100%;
 }
 
 .divTexts{
-  border: #e48416 1px solid;
-  display: inline;
+  display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 107px ;
-  width: 158px;
+  height: 100% ;
+  width: 100%;
 
+}
+
+.hFour{
+  font-weight: bold ;
+  margin-left: 5%;
+  font-size: 16px;
+}
+
+.pPrice{
+  font-size: 16px;
+  font-weight: 600 ;
+  color: #2e245e;
+  margin-left: 5%;
+}
+
+.romoveButton{
+  border: none;
+  background-color: #22020200;
+  cursor: pointer;
+  margin-left: 5%;
+  width: 70%;
+  height: 15%;
+} 
+
+.romoveButton:hover{
+  color: #2e245e;
 }
 
 .cart-details {

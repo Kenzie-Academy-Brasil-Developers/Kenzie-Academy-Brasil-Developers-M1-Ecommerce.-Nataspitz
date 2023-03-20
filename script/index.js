@@ -77,7 +77,7 @@ function cards(list) {
         button.innerHTML= "Adicionar ao carrinho"
         
        
-          //config botao carrinho
+          //evento adicionar no carrinho
           button.addEventListener("click", function (e){
         
                    
@@ -95,9 +95,9 @@ function cards(list) {
           //contagens
           productCount++
           document.querySelector("#productCount").innerHTML = `${productCount}`
-        
-        
             
+            let valueCount = indice.value + valueCount
+            document.querySelector("#valueCount").innerHTML = `${valueCount}`
            })
     
     }
@@ -161,36 +161,39 @@ function cardsCar(obj) {
     const buttonCar = document.createElement("button")
     liCar.appendChild(buttonCar)
     divTexts.appendChild(buttonCar)
-    buttonCar.classList.add("romeveButton")
+    buttonCar.classList.add("romoveButton")
     buttonCar.innerHTML = "Remover produto"
     buttonCar.id = `car${obj.id}`
     
 
-    //evento de adicionar carrinho 
+    //evento de retirar do carrinho 
     buttonCar.addEventListener("click", function(event){
-        //contagens
-        productCount--
-        
-        document.querySelector("#productCount").innerHTML = `${productCount}`
-
-
         //configuração
         let  carPath = event.composedPath()
         carPath[2].remove()
-
+        
         //criação de textos de carrinho vazio
         //div > (h5, p)
         let divAdd = document.querySelector(".cart-empty")
+        
+        //contagens
+        productCount--
+        document.querySelector("#productCount").innerHTML = `${productCount}`
+        
 
-        if (liCar.length ) {
+            //removendo listas
+
+           
+            //criando textos
             let hAdd = document.createElement("h5")
             divAdd.appendChild(hAdd)
             hAdd.innerText = "Carrinho vazio"
             let pAdd = document.createElement("p")
             divAdd.appendChild(pAdd)
             pAdd.innerText = "Adicione itens"
-            
-        }else  {return false }
+               
+        
+
             
 
 
@@ -239,8 +242,6 @@ searchButton.addEventListener("click", function(){
             if (producName.includes(searchText.value)) {
                 search.push(data[i])
             }
-        }if (search.length== 0) {
-            alert("Produto não encontrado")
         }
         cards(search)
     })
