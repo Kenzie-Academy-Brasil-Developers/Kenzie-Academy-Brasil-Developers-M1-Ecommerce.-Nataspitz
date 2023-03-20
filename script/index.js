@@ -89,8 +89,13 @@ function cards(list) {
           
 
            
-          //deletando titulo e paragrafo 
+          //restauração da div
             document.querySelector(".cart-empty").style.display = "none"
+            document.querySelector(".cart-products").style.display = "block"
+            let divCar = document.createElement("div")
+            /*divCar.appendChild(ulCar)
+            divCar.classList.add("divTexts")*/
+
         
           //contagens
           productCount++
@@ -177,14 +182,15 @@ function cardsCar(obj) {
         
         if (ulChildren == 0) {
             document.querySelector(".cart-empty").style.display = "flex"
+            document.querySelector(".cart-products").style.display = "none"
         }
         
       
 
         
         //contagens
-        productCount--
-        document.querySelector("#valueCount").innerHTML = `${Count},00`
+        productCount --
+        document.querySelector("#productCount").innerHTML = `${productCount}`
         
          valueCount -= obj.value
         document.querySelector("#valueCount").innerHTML = `R$${valueCount},00`
